@@ -56,7 +56,7 @@ async function fetchLatestDepositTransaction(contractAddress, depositSignature, 
     const depositTransactions = transactions.filter((tx) =>
     tx.methodId === buySignature && 
     parseInt(tx.timeStamp) > lastTransactionTimestamp &&
-  parseInt(tx.timeStamp) > timenow - 60 && timenow >= 1689955200
+  parseInt(tx.timeStamp) > timenow - 90
 );
 console.log(timenow)
     if (depositTransactions.length === 0) return;
