@@ -12,6 +12,7 @@ express()
   .get('/', (req, res) => res.render('pages/index'))
   .listen(PORT, () => console.log(`Listening on ${ PORT }`))
 
+
   
 require('dotenv').config();
 const { ethers } = require('ethers');
@@ -54,7 +55,7 @@ async function fetchLatestDepositTransaction(contractAddress, depositSignature, 
     const depositTransactions = transactions.filter((tx) =>
     tx.methodId === buySignature && 
     parseInt(tx.timeStamp) > lastTransactionTimestamp &&
-  parseInt(tx.timeStamp) > Math.floor(Date.now() / 1000) - 60
+  parseInt(tx.timeStamp) > Math.floor(Date.now() / 1000) - 60 && Math.floor(Date.now() / 1000) >= 1689955200
 );
 
     if (depositTransactions.length === 0) return;
