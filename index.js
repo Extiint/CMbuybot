@@ -38,7 +38,7 @@ const axios = require('axios');
   const buySignature ='0xdb663865';
 
   const apiKey = 'Z1B3GRG3NXG82SA5P6GKMHBF1JPRCGFQP8'; // Replace with your BscScan API key
-  let lastTransactionTimestamp = 1685463722;
+  let lastTransactionTimestamp = 1689940835;
   const alreadyNotified = new Set();
 
 
@@ -59,7 +59,6 @@ async function fetchLatestDepositTransaction(contractAddress, depositSignature, 
 
     if (depositTransactions.length === 0) return;
     const sortedTransactions = depositTransactions.sort((a, b) => parseInt(a.timeStamp) - parseInt(b.timeStamp));
-    console.log(sortedTransactions,"hereeee");
 
     const latestTransaction = sortedTransactions[sortedTransactions.length -1];
 
@@ -99,7 +98,7 @@ async function fetchLatestDepositTransaction(contractAddress, depositSignature, 
 
     // calculate number of emojis to send
     if (newamount >= 60) {
-      numEmojis = Math.floor(60 * 4);
+      numEmojis = Math.floor(80 * 4);
     } else {
       numEmojis = Math.floor(newamount * 100);
     }
@@ -107,7 +106,7 @@ async function fetchLatestDepositTransaction(contractAddress, depositSignature, 
     for (let i = 0; i < numEmojis; i++) {
       emojis += '⭐'; // add rocket emoji
     }
-    const caption = `<b>Classic Miner new deposit!</b>\n\n${emojis} \n\n<b>TVL:</b> ${totalDeposits2} USDT\n<b>Deposit Amount:</b> ${newamount} USDT\n\n  <a href="https://classicminer.io/"><u>Website</u></a>  |  <a href="https://the-stamp.com/2023/07/classic-miner/"><u>Audit</u></a>  |  <a href=${bscScanLink}><u>Tx</u></a>`;
+    const caption = `<b>Classic Miner new deposit!</b>\n\n${emojis} \n\n<b>TVL:</b> ${totalDeposits2} BNB\n<b>Deposit Amount:</b> ${newamount} BNB\n\n  <a href="https://classicminer.io/"><u>Website</u></a>  |  <a href="https://the-stamp.com/2023/07/classic-miner/"><u>Audit</u></a>  |  <a href="https://bscscan.com/tx/${latestTransaction.hash}"><u>Tx</u></a>`;
     await bot.sendPhoto(targetGroupId, 'https://ipfs.filebase.io/ipfs/QmSc3Xq7TYxuDHArvi9RDLdgrjDmVTGC7ugb9hnyuvPif4', {
       caption: caption,
       parse_mode: 'HTML'
