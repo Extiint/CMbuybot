@@ -46,7 +46,8 @@ const axios = require('axios');
 async function fetchLatestDepositTransaction(contractAddress, depositSignature, bot, targetGroupId) {
   try {
     // Fetch the current value of totalDeposits from Firestore:    
-    
+    const timenow = Math.floor(Date.now() / 1000);
+   
     const response = await axios.get(
       `https://api.bscscan.com/api?module=account&action=txlist&address=${contractAddress}&startblock=0&endblock=99999999&sort=desc&apikey=${apiKey}`
     );
@@ -55,9 +56,9 @@ async function fetchLatestDepositTransaction(contractAddress, depositSignature, 
     const depositTransactions = transactions.filter((tx) =>
     tx.methodId === buySignature && 
     parseInt(tx.timeStamp) > lastTransactionTimestamp &&
-  parseInt(tx.timeStamp) > Math.floor(Date.now() / 1000) - 60 && Math.floor(Date.now() / 1000) >= 1689955200
+  parseInt(tx.timeStamp) > timenow - 60 && timenow >= 1689955200
 );
-
+console.log(timenow)
     if (depositTransactions.length === 0) return;
     const sortedTransactions = depositTransactions.sort((a, b) => parseInt(a.timeStamp) - parseInt(b.timeStamp));
 
