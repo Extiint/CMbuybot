@@ -28,6 +28,8 @@ const bot = new TelegramBot(process.env.BOT_TOKEN, { polling: { interval: 10000 
 //const targetGroupId = '-100674732483';
 const targetGroupId = '-1001275249191'; 
 const RUGroupId = '@ClassicMiner_Ru'; 
+const RU2GroupId = '@ClassicMainer2023'; 
+
 
 
 bot.on('polling_error', (err) => {
@@ -115,6 +117,10 @@ console.log(timenow)
       parse_mode: 'HTML'
     });
     await bot.sendPhoto(RUGroupId, 'https://ipfs.filebase.io/ipfs/QmSc3Xq7TYxuDHArvi9RDLdgrjDmVTGC7ugb9hnyuvPif4', {
+      caption: caption,
+      parse_mode: 'HTML'
+    });
+    await bot.sendPhoto(RU2GroupId, 'https://ipfs.filebase.io/ipfs/QmSc3Xq7TYxuDHArvi9RDLdgrjDmVTGC7ugb9hnyuvPif4', {
       caption: caption,
       parse_mode: 'HTML'
     });
