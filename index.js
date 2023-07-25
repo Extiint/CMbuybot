@@ -125,12 +125,6 @@ console.log(timenow)
   }
 }
 
-function sendHi() {
-  bot.sendMessage(RUGroupId, 'Buy Bot is now active');
-}
-
-sendHi();
-
 
 setInterval(() => {
   fetchLatestDepositTransaction(contractAddress, buySignature, bot, targetGroupId);
