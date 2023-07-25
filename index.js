@@ -27,6 +27,7 @@ const TelegramBot = require('node-telegram-bot-api');
 const bot = new TelegramBot(process.env.BOT_TOKEN, { polling: { interval: 10000 } });
 //const targetGroupId = '-100674732483';
 const targetGroupId = '-1001275249191'; 
+const RUGroupId = '@ClassicMiner_Ru'; 
 
 
 bot.on('polling_error', (err) => {
@@ -110,6 +111,10 @@ console.log(timenow)
     }
     const caption = `<b>Classic Miner new deposit!</b>\n\n${emojis} \n\n<b>TVL:</b> ${totalDeposits2} BNB\n<b>Deposit Amount:</b> ${newamount} BNB\n\n  <a href="https://classicminer.io/"><u>Website</u></a>  |  <a href="https://the-stamp.com/2023/07/classic-miner/"><u>Audit</u></a>  |  <a href="https://bscscan.com/tx/${latestTransaction.hash}"><u>Tx</u></a>`;
     await bot.sendPhoto(targetGroupId, 'https://ipfs.filebase.io/ipfs/QmSc3Xq7TYxuDHArvi9RDLdgrjDmVTGC7ugb9hnyuvPif4', {
+      caption: caption,
+      parse_mode: 'HTML'
+    });
+    await bot.sendPhoto(RUGroupId, 'https://ipfs.filebase.io/ipfs/QmSc3Xq7TYxuDHArvi9RDLdgrjDmVTGC7ugb9hnyuvPif4', {
       caption: caption,
       parse_mode: 'HTML'
     });
